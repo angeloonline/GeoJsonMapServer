@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="https://www.devnode.it">
+        <img src="/mapserver/public/img/logo.png" width="30" height="30" alt="">
+        Devnode.it</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/mapserver/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/mapserver/viewMap">viewMap</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/mapserver/resources">Resources</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/mapserver/about">About</a>
+          </li>
+      </ul>
+    </div>
+</nav>
+<script>
+  // Get the title element of the page
+  var pageTitle = document.title;  
+  var btnContainer = document.getElementById("navbarSupportedContent");
+  
+  // Get all buttons with class="btn" inside the container
+  var btns = btnContainer.getElementsByClassName("nav-item");
+  
+  // Loop through the buttons and add the active class to the current/clicked button
+  for (var i = 0; i < btns.length; i++) {
+    if(btns[i].innerText === pageTitle)
+      btns[i].className += " active";
+    else
+      btns[i].className = btns[i].className.replace(" active", "");;
+  }
+  </script>

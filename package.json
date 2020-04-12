@@ -1,0 +1,52 @@
+{
+  "name": "mapserver",
+  "version": "1.0.0",
+  "description": "Map server of geojson files",
+  "main": "dist/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --out-dir dist --source-maps inline --copy-files && webpack src/public/js/viewMap.js --mode=development -o dist/public/js/viewMap.js",
+    "start": "npm run build && node .",
+    "dev:start": "nodemon --watch src -e js,ejs --exec npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://angeloonline@bitbucket.org/angeloonline/nodejsrepository.git"
+  },
+  "keywords": [
+    "mapserver",
+    "geojson"
+  ],
+  "author": "angelo martone",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/angeloonline/nodejsrepository#readme",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "nodemon": "^2.0.2",
+    "webpack": "^4.42.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.5",
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "prettier": "1.19.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "browserslist": "> 0.25%, not dead",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true
+  }
+}

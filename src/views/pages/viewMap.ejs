@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <%- include ('../partials/header') %>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js"></script>
+        <link
+            href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css"
+            rel="stylesheet"
+        />
+        <script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js"></script>
+        <link href="./public/css/style.css" rel="stylesheet" />
+        <script src="./public/js/viewMap.js"></script>
+        
+    </head>
+    <body>
+        <div style="margin:0px; z-index:0;">
+            <%- include ('../partials/nav') %>
+
+            <div id="map"></div>
+            <button id="zoomto" class="btn-control">Zoom to bounds</button>
+            <div id="menu">
+                <input
+                    id="streets-v11"
+                    type="radio"
+                    name="rtoggle"
+                    value="streets"
+                    checked="checked"
+                />
+                <label for="streets">streets</label>
+                <input
+                    id="light-v10"
+                    type="radio"
+                    name="rtoggle"
+                    value="light"
+                />
+                <label for="light">light</label>
+                <input id="dark-v10" type="radio" name="rtoggle" value="dark" />
+                <label for="dark">dark</label>
+                <input
+                    id="outdoors-v11"
+                    type="radio"
+                    name="rtoggle"
+                    value="outdoors"
+                />
+                <label for="outdoors">outdoors</label>
+                <input
+                    id="satellite-v9"
+                    type="radio"
+                    name="rtoggle"
+                    value="satellite"
+                />
+                <label for="satellite">satellite</label>
+            </div>
+            <div class="map-overlay top">
+                <div class="map-overlay-inner">
+                    <label>Layer opacity: <span id="slider-value">50%</span></label>
+                    <input
+                    id="slider"
+                    type="range"
+                    min="0"
+                    max="100"
+                    step="0"
+                    value="50"
+                    />
+                    <div id="menuLayer"></div>
+                </div>                
+            </div>
+        </div>
+
+        
+    </body>
+</html>

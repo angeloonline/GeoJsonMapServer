@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <%- include ('../partials/header') %>
+  </head>
+<body>
+  <div style="margin:0px;">
+    <%- include ('../partials/nav') %>
+    <div class="jumbotron" style="padding:20px;">
+      <h1>Map Server geojson</h1>
+      <p>This is map server example of geojson feature type.</p>
+      <lu id="geojsonList">
+
+      </lu>
+    </div>
+  </div>
+</body>
+<script>
+  function removeFileExtension(str) {
+    return str.replace(/\.[^/.]+$/, "")
+  }
+  function createNode(element) {
+      return document.createElement(element);
+  }
+
+  function append(parent, el) {
+    return parent.appendChild(el);
+  }
+  
+  window.addEventListener("DOMContentLoaded", function() {
+    var origin = window.location.origin;
+    var pathname = window.location.pathname;
+    const lu = document.getElementById('geojsonList');
+    const url = '/mapserver/allMaps';
+
+    fetch(url)
+    .then(resp => resp.json())
+    .then(jsonData => { //log data fetched
+        console.log("jsonData: " , jsonData);
+        return jsonData;
+    })
+    .then(function(data) {
+      let files = data;
+      return files.map(function(file) {
+        let li = createNode('li'),
+            a = createNode('a');
+        // Set the name of li as innerHTML property
+        a.innerHTML = _.startCase(removeFileExtension(file));  //using lodash
+        // Set the href property. 
+        a.href = '/mapserver/viewMap?geojsonmap=' + removeFileExtension(file);        
+        //a.href = './static/mapfile/' + file; 
+        append(li, a);
+        append(lu, li);
+      })
+    })
+    .catch(function(error) {
+      console.log(error);
+    }); 
+  },false);
+  </script>
+</html>
