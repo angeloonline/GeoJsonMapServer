@@ -1,4 +1,4 @@
-import {MAPBOX_ACCESSTOKEN} from './constants'
+import {MAPBOX_ACCESSTOKEN} from './constants.js'
 
 window.addEventListener('DOMContentLoaded', function() {
     const params = new URLSearchParams(location.search)
