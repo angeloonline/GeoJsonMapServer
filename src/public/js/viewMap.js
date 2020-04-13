@@ -21,23 +21,20 @@ window.addEventListener('DOMContentLoaded', function() {
     var slider = document.getElementById('slider')
     var sliderValue = document.getElementById('slider-value')
 
-    function switchLayer(layer) {
-        var layerId = layer.target.id
-        map.setStyle('mapbox://styles/mapbox/' + layerId)
+    // called to switch layer style
+    function switchStyle(style) {
+        var styleId = style.target.id
+        map.setStyle('mapbox://styles/mapbox/' + styleId)
     }
 
+    // for every radio button attach switchStyle funtion to onclick event
     for (var i = 0; i < inputs.length; i++) {
-        inputs[i].onclick = switchLayer
+        inputs[i].onclick = switchStyle
     }
 
-    // Omnivore will AJAX-request this file behind the scenes and parse it:
-    // note that there are considerations:
-    // - The file must either be on the same domain as the page that requests it,
-    //   or both the server it is requested from and the user's browser must
-    //   support CORS.
-
-    // Internally this function uses the TopoJSON library to decode the given file
-    // into GeoJSON.
+    /* Fired immediately after all necessary resources have been downloaded and the first visually complete rendering of the map has occurred.
+        zoom to the features bounding box
+    */
     map.on('load', function() {
         if (varMap == null) return
 
@@ -55,6 +52,7 @@ window.addEventListener('DOMContentLoaded', function() {
             )
         })
     })
+    //when the map's style is fully loaded.
     map.on('style.load', function() {
         // Triggered when `setStyle` is called.
         addDataLayer()
@@ -128,7 +126,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 break
             }
         }
-        // Add a source and layer displaying a point which will be animated in a circle.
+        // Add a source and layer displaying geojson map
         map.addSource('geojson-map', {
             type: 'geojson',
             data: './public/mapfile/' + varMap,
@@ -252,7 +250,8 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        var layers = document.getElementById('menuLayer')
-        layers.appendChild(link)
+        //opacity layer menu
+        var styles = document.getElementById('menuOpacityLayer')
+        styles.appendChild(link)
     }
 })

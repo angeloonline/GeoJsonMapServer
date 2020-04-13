@@ -28,7 +28,7 @@ router.get('/resources', function(req, res, next) {
 })
 
 router.get('/viewMap', function(req, res, next) {
-    res.render('pages/viewMap', { title: 'viewMap' })
+    res.render('pages/viewMap', { title: 'ViewMap' })
 })
 
 const geojsonFolder = '../geojson_files/'

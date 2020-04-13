@@ -63,7 +63,7 @@
     cursor: ew-resize;
 }
 
-#menuLayer {
+#menuOpacityLayer {
     background: #fff;
     border-radius: 3px;
     width: 120px;
@@ -71,7 +71,7 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-#menuLayer a {
+#menuOpacityLayer a {
     font-size: 13px;
     color: #404040;
     display: block;
@@ -83,21 +83,21 @@
     text-align: center;
 }
 
-#menuLayer a:last-child {
+#menuOpacityLayer a:last-child {
     border: none;
 }
 
-#menuLayer a:hover {
+#menuOpacityLayer a:hover {
     background-color: #f8f8f8;
     color: #404040;
 }
 
-#menuLayer a.active {
+#menuOpacityLayer a.active {
     background-color: #3887be;
     color: #ffffff;
 }
 
-#menuLayer a.active:hover {
+#menuOpacityLayer a.active:hover {
     background: #3074a4;
 }
 
