@@ -2,4 +2,3 @@
 node_modules/
 dist/
 daemon/
-package-lock.json

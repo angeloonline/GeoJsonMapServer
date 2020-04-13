@@ -136,7 +136,7 @@ window.addEventListener('DOMContentLoaded', function() {
         // Add a source and layer displaying a point which will be animated in a circle.
         map.addSource('geojson-map', {
             type: 'geojson',
-            data: './public/mapfile/' + varMap + '.geojson',
+            data: './public/mapfile/' + varMap,
             generateId : true
         })
 // The feature-state dependent fill-opacity expression will render the hover effect

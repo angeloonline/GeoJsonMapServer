@@ -46,7 +46,7 @@
         // Set the name of li as innerHTML property
         a.innerHTML = _.startCase(removeFileExtension(file));  //using lodash
         // Set the href property. 
-        a.href = '/mapserver/viewMap?geojsonmap=' + removeFileExtension(file);        
+        a.href = '/mapserver/viewMap?geojsonmap=' + file;        
         //a.href = './static/mapfile/' + file; 
         append(li, a);
         append(lu, li);

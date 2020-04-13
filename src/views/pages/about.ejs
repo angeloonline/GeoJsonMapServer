@@ -6,9 +6,27 @@
   <div style="margin:0px;">
     <%- include ('../partials/nav') %>
     <div class="jumbotron"  style="padding:20px;">
-      <h1>Map Server geojson</h1>
-      <p>About</p>
-      
+      <h1>About</h1>
+      <h4>Geojson map renderer written with Node.js, Express and MapBox</h4>
+      <p>
+        This simple Map Server application outputs maps in GeoJson format using:
+        <lu>
+        <li>Node.js and Express as backend</li>
+        <li>Mapbox and vanilla Javascript as frontend</li>
+        </lu>
+      </p>
+      <p>
+        To use Mapbox gl library put your access token in /public/js/constants.js file:
+        <pre>
+        export const MAPBOX_ACCESSTOKEN = 'put-your-api-key'
+      </pre>
+      </p>
+      <p>
+        To start server digit:
+        <pre>
+        npm start
+      </pre>
+      </p>
     </div>
   </div>
 </body>
