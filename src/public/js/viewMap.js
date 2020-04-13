@@ -1,4 +1,4 @@
-import {MAPBOX_ACCESSTOKEN} from './constants.js'
+import { MAPBOX_ACCESSTOKEN } from './constants.js'
 
 window.addEventListener('DOMContentLoaded', function() {
     const params = new URLSearchParams(location.search)
@@ -17,10 +17,9 @@ window.addEventListener('DOMContentLoaded', function() {
 
     var layerList = document.getElementById('menu')
     var inputs = layerList.getElementsByTagName('input')
-    
- 
-    var slider = document.getElementById('slider');
-    var sliderValue = document.getElementById('slider-value');  
+
+    var slider = document.getElementById('slider')
+    var sliderValue = document.getElementById('slider-value')
 
     function switchLayer(layer) {
         var layerId = layer.target.id
@@ -40,9 +39,8 @@ window.addEventListener('DOMContentLoaded', function() {
     // Internally this function uses the TopoJSON library to decode the given file
     // into GeoJSON.
     map.on('load', function() {
-        if (varMap == null)
-            return;
-        
+        if (varMap == null) return
+
         var features = map.querySourceFeatures('geojson-map')
         var boundingBox = getBoundingBox(features)
         document.getElementById('zoomto').addEventListener('click', function() {
@@ -65,38 +63,38 @@ window.addEventListener('DOMContentLoaded', function() {
     // When a click event occurs on a feature in the places layer, open a popup at the
     // location of the feature, with description HTML from its properties.
     map.on('click', 'places', function(e) {
-        var coordinates = e.features[0].geometry.coordinates.slice()  
-        
-        var container = document.createElement("containertable");
-        
+        var coordinates = e.features[0].geometry.coordinates.slice()
+
+        var container = document.createElement('containertable')
+
         // DRAW HTML TABLE
 
         var perrow = 2, // 2 items per row
-        count = 0, // Flag for current cell
-        table = document.createElement("table"),
-        row = table.insertRow();
-        table.classList.add("table");
-        table.classList.add("table-striped");
+            count = 0, // Flag for current cell
+            table = document.createElement('table'),
+            row = table.insertRow()
+        table.classList.add('table')
+        table.classList.add('table-striped')
 
-        for (var property in e.features[0].properties){
-            var cell = row.insertCell();
+        for (var property in e.features[0].properties) {
+            var cell = row.insertCell()
             cell.innerHTML = _.startCase(property)
-            cell = row.insertCell();
-            cell.innerHTML = e.features[0].properties[property];
+            cell = row.insertCell()
+            cell.innerHTML = e.features[0].properties[property]
 
             // Break into next row
-            row = table.insertRow();      
-            
+            row = table.insertRow()
+
             // You can also attach a click listener if you want
-            row.addEventListener("click", function(){
-                alert(row.innerHTML);
-            });      
+            row.addEventListener('click', function() {
+                alert(row.innerHTML)
+            })
         }
-        
-        container.appendChild(table);
+
+        container.appendChild(table)
 
         console.log('Place properties: ')
-        for (var property in e.features[0].properties){
+        for (var property in e.features[0].properties) {
             console.log(property + ' : ' + e.features[0].properties[property])
         }
         var name =
@@ -104,7 +102,6 @@ window.addEventListener('DOMContentLoaded', function() {
                 ? e.features[0].properties.prov_name
                 : e.features[0].properties.name
 
-                
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
             .setHTML(container.innerHTML)
@@ -120,42 +117,41 @@ window.addEventListener('DOMContentLoaded', function() {
         map.getCanvas().style.cursor = ''
     })
 
-
     function addDataLayer() {
-        if (varMap == null)
-            return;
-        var layers = map.getStyle().layers;
+        if (varMap == null) return
+        var layers = map.getStyle().layers
         // Find the index of the first symbol layer in the map style
-        var firstSymbolId;
+        var firstSymbolId
         for (var i = 0; i < layers.length; i++) {
             if (layers[i].type === 'symbol') {
-                firstSymbolId = layers[i].id;
-                break;
+                firstSymbolId = layers[i].id
+                break
             }
         }
         // Add a source and layer displaying a point which will be animated in a circle.
         map.addSource('geojson-map', {
             type: 'geojson',
             data: './public/mapfile/' + varMap,
-            generateId : true
+            generateId: true,
         })
-// The feature-state dependent fill-opacity expression will render the hover effect
-// when a feature's hover state is set to true.
-        map.addLayer({
-            id: 'places',
-            type: 'fill',
-            source: 'geojson-map',
-            layout: { visibility: 'visible' },
-            paint: {
-                'fill-color': '#f08',
-                'fill-opacity': [
-                    'case',
-                    ['boolean', ['feature-state', 'hover'], false],
-                    1,
-                    0.5
-                    ]
-            }
-        },
+        // The feature-state dependent fill-opacity expression will render the hover effect
+        // when a feature's hover state is set to true.
+        map.addLayer(
+            {
+                id: 'places',
+                type: 'fill',
+                source: 'geojson-map',
+                layout: { visibility: 'visible' },
+                paint: {
+                    'fill-color': '#f08',
+                    'fill-opacity': [
+                        'case',
+                        ['boolean', ['feature-state', 'hover'], false],
+                        1,
+                        0.5,
+                    ],
+                },
+            },
             firstSymbolId
         )
         //});
@@ -164,49 +160,45 @@ window.addEventListener('DOMContentLoaded', function() {
             // be another layer name found in your style or a custom layer
             // added on the fly using `addSource`.
             var value = parseInt(e.target.value, 10) / 100
-            map.setPaintProperty(
-            'places',
-            'fill-opacity',
-                value
-            );
-             
-            // Value indicator
-            sliderValue.textContent = e.target.value + '%';
-            });
-        }
+            map.setPaintProperty('places', 'fill-opacity', value)
 
-    var hoveredStateId = null;
+            // Value indicator
+            sliderValue.textContent = e.target.value + '%'
+        })
+    }
+
+    var hoveredStateId = null
     // When the user moves their mouse over the state-fill layer, we'll update the
     // feature state for the feature under the mouse.
     map.on('mousemove', 'places', function(e) {
         if (e.features.length > 0) {
             if (hoveredStateId != null) {
                 map.setFeatureState(
-                { source: 'geojson-map', id: hoveredStateId },
-                { hover: false }
-                );
-        }
-            hoveredStateId = e.features[0].id;
+                    { source: 'geojson-map', id: hoveredStateId },
+                    { hover: false }
+                )
+            }
+            hoveredStateId = e.features[0].id
             //console.log('mousemove Id: '+ hoveredStateId)
             map.setFeatureState(
-            { source: 'geojson-map', id : hoveredStateId },
-            { hover: true }
-            );
+                { source: 'geojson-map', id: hoveredStateId },
+                { hover: true }
+            )
         }
-    });
-     
+    })
+
     // When the mouse leaves the state-fill layer, update the feature state of the
     // previously hovered feature.
     map.on('mouseleave', 'places', function() {
         //console.log('mouseleave Id: '+ hoveredStateId)
         if (hoveredStateId != null) {
             map.setFeatureState(
-            { source: 'geojson-map', id: hoveredStateId },
-            { hover: false }
-            );
+                { source: 'geojson-map', id: hoveredStateId },
+                { hover: false }
+            )
         }
-        hoveredStateId = null;
-    });
+        hoveredStateId = null
+    })
 
     function getBoundingBox(polygons) {
         var bounds = {},

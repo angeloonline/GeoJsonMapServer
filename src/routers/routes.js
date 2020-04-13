@@ -7,7 +7,11 @@ const router = express.Router()
 
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
-    console.log('Called url: %s at Time: %s ', req.url, moment().format('DD MMM YYYY, HH:mm:ss SSS'))
+    console.log(
+        'Called url: %s at Time: %s ',
+        req.url,
+        moment().format('DD MMM YYYY, HH:mm:ss SSS')
+    )
     next()
 })
 
@@ -27,7 +31,6 @@ router.get('/viewMap', function(req, res, next) {
     res.render('pages/viewMap', { title: 'viewMap' })
 })
 
-
 const geojsonFolder = '../geojson_files/'
 console.log(express.static(__dirname + geojsonFolder))
 //get Map as static resource
@@ -46,7 +49,8 @@ router.get('/retrieveMap/:name', function(req, res, next) {
         },
     }
 
-    var filenameComplete = path.join(__dirname, geojsonFolder) + fileName + '.geojson'
+    var filenameComplete =
+        path.join(__dirname, geojsonFolder) + fileName + '.geojson'
     res.sendFile(filenameComplete, options, function(err) {
         console.log('Serving filename : ', filenameComplete)
         if (err) {

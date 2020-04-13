@@ -39,30 +39,30 @@
     width: 25%;
     right: 50px;
     padding: 10px;
-    }
-     
+}
+
 .map-overlay .map-overlay-inner {
     background-color: #fff;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     border-radius: 3px;
     padding: 10px;
     margin-bottom: 10px;
-    }
-     
-    .map-overlay label {
+}
+
+.map-overlay label {
     display: block;
     margin: 0 0 10px;
-    }
-     
-    .map-overlay input {
+}
+
+.map-overlay input {
     background-color: transparent;
     display: inline-block;
     width: 100%;
     position: relative;
     margin: 0;
     cursor: ew-resize;
-    }
-    
+}
+
 #menuLayer {
     background: #fff;
     border-radius: 3px;
@@ -101,7 +101,12 @@
     background: #3074a4;
 }
 
-.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
     padding: 6px;
     line-height: 0.4;
     vertical-align: top;
@@ -112,7 +117,7 @@
     position: relative;
     background: #fff;
     border-radius: 3px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     padding: 15px 10px 15px;
     pointer-events: auto;
 }
@@ -132,6 +137,6 @@
     align-items: center;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     z-index: 1;
 }
