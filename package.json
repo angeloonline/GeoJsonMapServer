@@ -24,14 +24,12 @@
   "license": "ISC",
   "homepage": "https://github.com/angeloonline/GeoJsonMapServer",
   "dependencies": {
-    "D": "^1.0.0",
     "compression": "^1.7.4",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
     "moment": "^2.24.0",
-    "nodemon": "^2.0.2",
-    "webpack": "^4.42.1"
+    "nodemon": "^2.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.5",
@@ -39,6 +37,7 @@
     "@babel/preset-env": "^7.7.6",
     "babel-loader": "^8.1.0",
     "prettier": "1.19.1",
+    "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   },
   "browserslist": "> 0.25%, not dead",
