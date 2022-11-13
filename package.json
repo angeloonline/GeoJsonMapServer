@@ -38,7 +38,7 @@
     "babel-loader": "^8.1.0",
     "prettier": "1.19.1",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.12"
   },
   "browserslist": "> 0.25%, not dead",
   "babel": {
